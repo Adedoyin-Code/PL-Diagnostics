@@ -2592,3 +2592,261 @@ main section.team .about-head.center {
 main section#contact {
   min-height: 0;
 }
+
+/* ===== SERVICES PAGE: PHONE FIT ===== */
+@media (max-width: 640px) {
+  /* hero: tighter arc so more photos are visible */
+  main section.svc-hero {
+    --R: 48vw;
+    --pw: 15vw;
+    --ph: 22vw;
+    padding-inline: 12px;
+  }
+  /* show 5 photos so the whole arc fits inside the screen, none cut off */
+  main section.svc-hero .arc-photo:nth-child(odd) {
+    display: none;
+  }
+  main section.svc-hero .arc-photo {
+    border-radius: 12px;
+  }
+  main section.svc-hero .svc-hero-copy {
+    margin-top: 6px;
+  }
+  .svc-hero-copy h1 {
+    font-size: 27px;
+  }
+  .svc-hero-copy p {
+    font-size: 14.5px;
+  }
+
+  /* stats: one neat row of three */
+  .svc-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 26px;
+  }
+  .svc-stats li {
+    padding: 0 6px;
+    text-align: center;
+  }
+  .svc-stats strong {
+    font-size: 22px;
+  }
+  .svc-stats span {
+    display: block;
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+
+  /* quick jump chips: 2 x 2 grid */
+  .svc-jump {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 16px 28px;
+  }
+  .svc-jump a {
+    padding: 11px 10px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* service sections */
+  main section.svc-detail {
+    padding: 44px 16px;
+  }
+  .svc-detail-grid {
+    gap: 28px;
+  }
+  .svc-detail-intro h2 {
+    font-size: 26px;
+  }
+  .svc-detail-intro p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .svc-detail-img {
+    border-radius: 18px;
+  }
+
+  /* procedure cards */
+  .proc details > summary {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+  .proc-t h3 {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .proc-t > span {
+    font-size: 13px;
+  }
+  .proc-body {
+    padding: 0 18px 18px;
+  }
+  .proc-body > p {
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  .proc-body dl > div {
+    padding: 11px 12px;
+  }
+  .proc-body dd {
+    font-size: 13.5px;
+  }
+
+  /* how it works */
+  main section.svc-steps {
+    padding: 44px 16px 20px;
+  }
+  .steps li {
+    padding: 22px 20px;
+  }
+
+  /* booking card */
+  main section.svc-book {
+    padding: 36px 16px 64px;
+  }
+  .svc-book-card {
+    padding: 30px 20px;
+    border-radius: 26px;
+  }
+  .svc-book-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .svc-book-actions .cta,
+  .svc-book-actions .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+  }
+}
+
+/* ===== PHONE MARQUEE: all 11 photos slide across the hero (delete this whole block to go back to the 5-photo arc) ===== */
+@media (max-width: 640px) {
+  main section.svc-hero {
+    padding-bottom: 28px;
+  }
+  main section.svc-hero .arc-wrap {
+    min-height: 0;
+  }
+  main section.svc-hero .arc-wrap::before {
+    display: none; /* no dotted ring */
+  }
+  main section.svc-hero .arc-photos {
+    position: relative;
+    height: 40vw;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 9%,
+      #000 91%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 9%,
+      #000 91%,
+      transparent
+    );
+  }
+  main section.svc-hero .arc-photos .arc-photo {
+    display: block;
+    top: 3vw;
+    left: 0;
+    width: 28vw;
+    height: 35vw;
+    margin: 0;
+    border-radius: 18px;
+    transform-origin: center;
+    transform: translateX(100vw) rotate(var(--tilt, 0deg));
+    animation: svcMarquee 24s linear infinite;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(1) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -0s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(2) {
+    display: block;
+    --tilt: 4deg;
+    animation-delay: -2.18s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(3) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -4.36s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(4) {
+    display: block;
+    --tilt: 4deg;
+    animation-delay: -6.55s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(5) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -8.73s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(6) {
+    display: block;
+    --tilt: 4deg;
+    animation-delay: -10.91s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(7) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -13.09s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(8) {
+    display: block;
+    --tilt: 4deg;
+    animation-delay: -15.27s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(9) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -17.45s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(10) {
+    display: block;
+    --tilt: 4deg;
+    animation-delay: -19.64s;
+  }
+  main section.svc-hero .arc-photos .arc-photo:nth-child(11) {
+    display: block;
+    --tilt: -4deg;
+    animation-delay: -21.82s;
+  }
+  main section.svc-hero .svc-hero-copy {
+    margin-top: 18px;
+  }
+}
+@keyframes svcMarquee {
+  from {
+    transform: translateX(100vw) rotate(var(--tilt, 0deg));
+  }
+  to {
+    transform: translateX(calc(100vw - 352vw)) rotate(var(--tilt, 0deg));
+  }
+}
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  main section.svc-hero .arc-photos {
+    display: flex;
+    gap: 4vw;
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  main section.svc-hero .arc-photos .arc-photo {
+    position: static;
+    flex: none;
+    transform: none;
+  }
+}
