@@ -1,0 +1,185 @@
+/* ===== BRANCH CONTACTS (add after style.css) ===== */
+main section.branches {
+  min-height: 0;
+  padding: clamp(70px, 9vw, 120px) clamp(20px, 6vw, 96px);
+  background:
+    radial-gradient(
+      ellipse 50% 40% at 0% 100%,
+      rgba(224, 182, 78, 0.14),
+      transparent 70%
+    ),
+    linear-gradient(180deg, #fff, #fffaf0);
+  scroll-margin-top: 80px;
+}
+.branches-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.branches .about-head.center h2 {
+  margin: 0 0 16px;
+}
+.br-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.br-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 24px;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(120, 84, 40, 0.08);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+.br-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 161, 61, 0.6);
+  box-shadow: 0 24px 50px rgba(120, 84, 40, 0.16);
+}
+.br-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.br-ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f1d98f, #c9a13d);
+  box-shadow: 0 6px 16px rgba(201, 161, 61, 0.35);
+}
+.br-ico svg {
+  width: 24px;
+  height: 24px;
+  fill: #3b2a1a;
+}
+.br-no {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.br-card h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.br-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--brown-d);
+}
+.br-row address {
+  font-style: normal;
+}
+.br-row .br-i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(201, 161, 61, 0.14);
+}
+.br-row .br-i svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.br-row .br-lines {
+  display: grid;
+  gap: 2px;
+  padding-top: 7px;
+}
+.br-row a {
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.br-row a:hover {
+  color: var(--accent);
+}
+.br-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+.br-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.br-wa svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.br-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+}
+.br-dir {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 999px;
+  border: 1.5px solid var(--brown-d);
+  color: var(--brown-d);
+  font-weight: 600;
+  font-size: 14.5px;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.br-dir::after {
+  content: "\2192";
+}
+.br-dir:hover {
+  background: var(--brown-d);
+  color: #fff;
+}
+@media (max-width: 960px) {
+  .br-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
