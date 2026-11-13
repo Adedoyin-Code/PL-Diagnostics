@@ -1,18 +1,74 @@
 /* ===== PEARLSCAN: ALL JAVASCRIPT LIVES IN THIS FILE =====
-   Add new scripts below, each in its own section. */
+   Add new scripts below, each in its own section.
+   This file is loaded by BOTH index.html and services.html. */
 
-/* --- ALWAYS START AT THE TOP (hero) ON LOAD / RELOAD --- */
+/* --- START POSITION ---
+   - Reload, or opening the page with no #section  -> start at the top.
+   - Arriving through a link like index.html#about -> jump to that section. */
 (function () {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  if (location.hash) {
+
+  var nav =
+    performance.getEntriesByType &&
+    performance.getEntriesByType("navigation")[0];
+  var isReload = !!nav && nav.type === "reload";
+  var hash = location.hash;
+
+  function sectionFromHash() {
+    if (!hash || hash.length < 2) return null;
+    try {
+      return document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch (e) {
+      return null;
+    }
+  }
+  function toTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
+
+  if (hash && !isReload) {
+    var jump = function () {
+      var el = sectionFromHash();
+      if (el) el.scrollIntoView({ block: "start", behavior: "instant" });
+      else toTop();
+    };
+    jump();
+    /* run again once images have loaded and the layout has settled */
+    addEventListener("load", jump);
+    return;
+  }
+
+  if (hash) {
     history.replaceState(null, "", location.pathname + location.search);
   }
-  const top = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  top();
-  addEventListener("load", top);
-  addEventListener("pageshow", (e) => {
-    if (e.persisted) top();
+  toTop();
+  addEventListener("load", toTop);
+  addEventListener("pageshow", function (e) {
+    if (e.persisted) toTop();
   });
+})();
+
+/* --- PHONE MENU: close it when a link is tapped (or Escape is pressed) --- */
+(function () {
+  var menu = document.getElementById("menu");
+  var sheet = document.querySelector(".sheet");
+  if (!menu || !sheet) return;
+
+  /* tapping any link inside the menu closes it; the "Services" summary
+     (which only opens the sub-list) is not a link, so it stays open */
+  sheet.addEventListener("click", function (e) {
+    if (e.target.closest("a")) menu.checked = false;
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") menu.checked = false;
+  });
+  /* if the window grows to desktop size, make sure the page can scroll again */
+  var mq = window.matchMedia("(min-width: 901px)");
+  var onChange = function (ev) {
+    if (ev.matches) menu.checked = false;
+  };
+  if (mq.addEventListener) mq.addEventListener("change", onChange);
+  else if (mq.addListener) mq.addListener(onChange);
 })();
 
 /* --- AOS: scroll animations --- */
@@ -29,7 +85,7 @@
   });
 })();
 
-/* --- HERO SLIDER --- */
+/* --- HERO SLIDER (home page only) --- */
 (function () {
   const slider = document.querySelector(".slider");
   if (!slider) return;
@@ -119,7 +175,7 @@
   requestAnimationFrame(() => requestAnimationFrame(() => go(0)));
 })();
 
-/* --- TEAM: CINEMATIC (reveals, spotlight, tilt, parallax) --- */
+/* --- TEAM: CINEMATIC (reveals + parallax, home page only) --- */
 (function () {
   var sec = document.getElementById("team");
   if (!sec) return;
@@ -153,7 +209,7 @@
   }
   if (reduce) return;
 
-  /* parallax: photos drift slowly as you scroll */
+  /* 2. parallax: photos drift slowly as you scroll */
   var rows = Array.prototype.slice.call(sec.querySelectorAll(".tm-row"));
   var ticking = false;
   function parallax() {
