@@ -1,7 +1,7 @@
 /* ===== BRANCH CONTACTS (add after style.css) ===== */
 main section.branches {
   min-height: 0;
-  padding: clamp(70px, 9vw, 120px) clamp(20px, 6vw, 96px);
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 6vw, 96px) clamp(70px, 9vw, 120px);
   background:
     radial-gradient(
       ellipse 50% 40% at 0% 100%,
@@ -130,17 +130,19 @@ main section.branches {
   padding-top: 24px;
 }
 .br-wa {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 14px 20px;
   border-radius: 999px;
-  background: #25d366;
-  color: #fff;
+  background: linear-gradient(120deg, #f1d98f, #c9a13d 55%, #b98a4a);
+  color: #2f2010;
   font-weight: 600;
   font-size: 15px;
-  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 6px 20px rgba(201, 161, 61, 0.4);
   transition:
     transform 0.25s,
     box-shadow 0.25s;
@@ -148,11 +150,11 @@ main section.branches {
 .br-wa svg {
   width: 20px;
   height: 20px;
-  fill: #fff;
+  fill: #2f2010;
 }
 .br-wa:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 10px 28px rgba(201, 161, 61, 0.6);
 }
 .br-dir {
   display: inline-flex;
@@ -182,4 +184,27 @@ main section.branches {
     max-width: 480px;
     margin-inline: auto;
   }
+}
+
+/* tighter gap under the FAQ */
+main section.faq {
+  padding-bottom: clamp(32px, 4vw, 56px);
+}
+
+/* bigger, bolder "Contact Us" pill */
+.branches .sec-pill {
+  margin-bottom: 22px;
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #f1d98f, #c9a13d 55%, #b98a4a);
+  box-shadow: 0 8px 24px rgba(201, 161, 61, 0.45);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2f2010;
+}
+.branches .about-head.center h2 {
+  font-weight: 800;
 }
